@@ -3,7 +3,7 @@ services:
     name: skillswap-hub
     runtime: node
     buildCommand: npm install && npm run build
-    startCommand: npx ts-node server/server.ts
+    startCommand: node server-dist/server/server.js
     envVars:
       - key: MONGODB_URI
         sync: false
