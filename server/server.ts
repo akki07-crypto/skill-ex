@@ -429,6 +429,17 @@ app.post('/api/messages', async (req, res) => {
   }
 });
 
+import path from 'path';
+
+// Serve static files from the React frontend build
+const distPath = path.join(__dirname, '../dist');
+app.use(express.static(distPath));
+
+// Fallback to index.html for React Router routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(distPath, 'index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`Express API Server running on port ${PORT}`);
 });
